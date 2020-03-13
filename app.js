@@ -3,24 +3,42 @@ $(document).ready(function () {
     let phrase
     let final_key
     let encrypted_phrase
+    let decrypted_phrase
 
-    $('#key').keyup(function () {
-        if ($('#key').val().length == 0) {
+    $('#encKey').keyup(function () {
+        if ($('#encKey').val().length == 0) {
             $('#finalKey').html('')
         } else {
-            key = $('#key').val()
+            key = $('#encKey').val()
             final_key = Array.from(generateKey(key))
             $('#finalKey').html(final_key)
         }
     })
 
-    $('#phrase').keyup(function () {
-        if ($('#phrase').val().length == 0) {
-            $('#result').html('')
+    $('#encPhrase').keyup(function () {
+        if ($('#encPhrase').val().length == 0) {
+            $('#encResult').html('')
         } else {
-            phrase = $('#phrase').val()
+            phrase = $('#encPhrase').val()
             encrypted_phrase = encrypt(phrase, final_key)
-            $('#result').html(encrypted_phrase)
+            $('#encResult').html(encrypted_phrase)
+        }
+    })
+
+    $('#decKey').keyup(function () {
+        if ($('#decKey').val().length != 0) {
+            key = $('#decKey').val()
+            final_key = Array.from(generateKey(key))
+        }
+    })
+
+    $('#decPhrase').keyup(function () {
+        if ($('#decPhrase').val().length == 0) {
+            $('#decResult').html('')
+        } else {
+            phrase = $('#decPhrase').val()
+            decrypted_phrase = decrypt(phrase, final_key)
+            $('#decResult').html(decrypted_phrase)
         }
     })
 
@@ -31,6 +49,23 @@ $(document).ready(function () {
         array_phrase.forEach(function (character, key) {
             if (toAsci(character) != -64) {
                 array_phrase[key] = final_key[toAsci(character) - 1]
+            }
+        })
+
+        return array_phrase
+    }
+
+    // Encrypt Process Function
+    function decrypt(phrase, final_key) {
+        let array_phrase = Array.from(phrase)
+        let alphabet = 'abcdefghijklmnopqrstuvxyz'
+        alphabet = Array.from(alphabet)
+        let index
+
+        array_phrase.forEach(function (character, key) {
+            if (toAsci(character) != -64) {
+                index = final_key.indexOf(character)
+                array_phrase[key] = alphabet[index]
             }
         })
 
