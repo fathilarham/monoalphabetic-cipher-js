@@ -58,7 +58,7 @@ $(document).ready(function () {
     // Encrypt Process Function
     function decrypt(phrase, final_key) {
         let array_phrase = Array.from(phrase)
-        let alphabet = 'abcdefghijklmnopqrstuvxyz'
+        let alphabet = 'abcdefghijklmnopqrstuvwxyz'
         alphabet = Array.from(alphabet)
         let index
 
