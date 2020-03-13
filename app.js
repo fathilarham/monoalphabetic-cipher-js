@@ -121,11 +121,6 @@ $(document).ready(function () {
         return array;
     }
 
-    // Transform ASCI to Char Function
-    function toChar(asci) {
-        return String.fromCharCode(asci + 96)
-    }
-
     // Transform Char to ASCI Function
     function toAsci(char) {
         return char.charCodeAt() - 96
