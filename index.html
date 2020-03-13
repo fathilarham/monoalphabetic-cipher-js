@@ -25,6 +25,35 @@
             // Key
             let key = "we hope you enjoy this book"
 
+            // Key Process Function
+            function generateKey(key) {
+                // Remove space between words
+                let unique_key = Array.from(key.replace(/\s+/g, '').toLowerCase())
+
+                // Create Set Var to remove same characters in string
+                let set = new Set()
+
+                unique_key.forEach(function (character) {
+                    // Add each character to Set datatype
+                    set.add(character)
+                })
+
+                unique_key = Array.from(set)
+
+                let alphabet = 'abcdefghijklmnopqrstuvxyz'
+
+                unique_key.forEach(function (character) {
+                    alphabet = alphabet.replace(character, '')
+                })
+
+                let add_key = Array.from(alphabet)
+                shuffle(add_key)
+
+                let final_key = unique_key.join('') + add_key.join('')
+
+                return final_key
+            }
+
             // Transform ASCI to Char Function
             function toChar(asci) {
                 return String.fromCharCode(asci + 96)
