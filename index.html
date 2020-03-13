@@ -17,6 +17,26 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
         integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            // Phrase
+            let phrase = "testing"
+
+            // Key
+            let key = "we hope you enjoy this book"
+
+            // Transform ASCI to Char Function
+            function toChar(asci) {
+                return String.fromCharCode(asci + 96)
+            }
+
+            // Transform Char to ASCI Function
+            function toAsci(char) {
+                return char.charCodeAt() - 96
+            }
+
+        });
+    </script>
 </body>
 
 </html>
