@@ -1,28 +1,37 @@
 $(document).ready(function () {
-    let key = "we hope you enjoy this book"
-    let phrase = "testing"
+    let key
+    let phrase
     let final_key
+    let encrypted_phrase
 
-    $('#key').on('change', function () {
+    $('#key').keyup(function () {
         if ($('#key').val().length == 0) {
             $('#finalKey').html('')
         } else {
             key = $('#key').val()
             final_key = Array.from(generateKey(key))
-            $('#finalKey').val(final_key)
+            $('#finalKey').html(final_key)
         }
     })
 
-
-    //let encrypted_phrase = encrypt(phrase, final_key)
+    $('#phrase').keyup(function () {
+        if ($('#phrase').val().length == 0) {
+            $('#result').html('')
+        } else {
+            phrase = $('#phrase').val()
+            encrypted_phrase = encrypt(phrase, final_key)
+            $('#result').html(encrypted_phrase)
+        }
+    })
 
     // Encrypt Process Function
     function encrypt(phrase, final_key) {
         let array_phrase = Array.from(phrase)
 
         array_phrase.forEach(function (character, key) {
-            // console.log(key)
-            array_phrase[key] = final_key[toAsci(character) - 1]
+            if (toAsci(character) != -64) {
+                array_phrase[key] = final_key[toAsci(character) - 1]
+            }
         })
 
         return array_phrase
@@ -50,7 +59,6 @@ $(document).ready(function () {
         })
 
         let add_key = Array.from(alphabet)
-        shuffle(add_key)
 
         let final_key = unique_key.join('') + add_key.join('')
 
