@@ -25,6 +25,18 @@
             // Key
             let key = "we hope you enjoy this book"
 
+            // Encrypt Process Function
+            function encrypt(phrase, final_key) {
+                let array_phrase = Array.from(phrase)
+
+                array_phrase.forEach(function (character, key) {
+                    // console.log(key)
+                    array_phrase[key] = final_key[toAsci(character) - 1]
+                })
+
+                return array_phrase
+            }
+
             // Key Process Function
             function generateKey(key) {
                 // Remove space between words
