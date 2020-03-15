@@ -4,11 +4,15 @@ $(document).ready(function () {
     let final_key
     let encrypted_phrase
     let decrypted_phrase
+    $('#keyCopy').hide()
+    $('#resultCopy').hide()
 
     $('#encKey').keyup(function () {
         if ($('#encKey').val().length == 0) {
+            $('#keyCopy').hide()
             $('#finalKey').html('')
         } else {
+            $('#keyCopy').show()
             key = $('#encKey').val()
             final_key = Array.from(generateKey(key))
             $('#finalKey').html(final_key)
@@ -18,7 +22,9 @@ $(document).ready(function () {
     $('#encPhrase').keyup(function () {
         if ($('#encPhrase').val().length == 0) {
             $('#encResult').val('')
+            $('#resultCopy').hide()
         } else {
+            $('#resultCopy').show()
             phrase = $('#encPhrase').val()
             encrypted_phrase = encrypt(phrase, final_key)
             $('#encResult').val(encrypted_phrase.join(''))
@@ -45,6 +51,17 @@ $(document).ready(function () {
     $('#keyCopy').click(function () {
         $('#encKey').select()
         document.execCommand("copy")
+        document.getSelection().removeAllRanges()
+        alert('Kunci telah di copy')
+    })
+
+    $('#resultCopy').click(function () {
+        $('#encResult').removeAttr('disabled')
+        $('#encResult').select()
+        document.execCommand("copy")
+        $('#encResult').attr('disabled', true)
+        document.getSelection().removeAllRanges()
+        alert('Pesan rahasia telah di copy')
     })
 
     // Encrypt Process Function
