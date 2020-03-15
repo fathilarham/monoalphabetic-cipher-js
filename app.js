@@ -17,11 +17,11 @@ $(document).ready(function () {
 
     $('#encPhrase').keyup(function () {
         if ($('#encPhrase').val().length == 0) {
-            $('#encResult').html('')
+            $('#encResult').val('')
         } else {
             phrase = $('#encPhrase').val()
             encrypted_phrase = encrypt(phrase, final_key)
-            $('#encResult').html(encrypted_phrase)
+            $('#encResult').val(encrypted_phrase.join(''))
         }
     })
 
@@ -34,11 +34,11 @@ $(document).ready(function () {
 
     $('#decPhrase').keyup(function () {
         if ($('#decPhrase').val().length == 0) {
-            $('#decResult').html('')
+            $('#decResult').val('')
         } else {
             phrase = $('#decPhrase').val()
             decrypted_phrase = decrypt(phrase, final_key)
-            $('#decResult').html(decrypted_phrase)
+            $('#decResult').val(decrypted_phrase.join(''))
         }
     })
 
