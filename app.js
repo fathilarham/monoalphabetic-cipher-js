@@ -42,6 +42,11 @@ $(document).ready(function () {
         }
     })
 
+    $('#keyCopy').click(function () {
+        $('#encKey').select()
+        document.execCommand("copy")
+    })
+
     // Encrypt Process Function
     function encrypt(phrase, final_key) {
         let array_phrase = Array.from(phrase)
